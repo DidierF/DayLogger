@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.sql.Time;
+import java.util.Calendar;
 
 import flab.didier.daylogger.R;
 
@@ -21,7 +21,7 @@ public class ActionView extends LinearLayout {
     private String mActionName;
 
 
-    public ActionView(Context context) {
+    public ActionView(Context context){
         super(context);
     }
 
@@ -37,17 +37,12 @@ public class ActionView extends LinearLayout {
 
     }
 
-    public ActionView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
     public String getHourLbl(){
      return mHourLbl;
     }
 
     private void setHourLbl(String newHourLbl){
         mHourLbl = newHourLbl;
-        ((TextView)this.findViewById(R.id.hourLbl)).setText("ActionView");
         invalidate();
         requestLayout();
     }
@@ -72,10 +67,12 @@ public class ActionView extends LinearLayout {
         requestLayout();
     }
 
-    public void setActionTime(Time t){
+    public void setActionTime(Calendar date){
 
-        String.format(mHourLbl = String.valueOf(t.toString()), "HH");
-        String.format(mMinuteLbl = String.valueOf(t.toString()), "MM");
+        mHourLbl = String.valueOf(date.get(Calendar.HOUR_OF_DAY));
+        mMinuteLbl = String.valueOf(date.get(Calendar.MINUTE));
 
+        ((TextView)this.findViewById(R.id.hourLbl)).setText(mHourLbl);
+        ((TextView)this.findViewById(R.id.minuteLbl)).setText(mMinuteLbl);
     }
 }

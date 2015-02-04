@@ -1,23 +1,37 @@
 package flab.didier.daylogger;
 
-import java.sql.Time;
-import java.util.Date;
+import android.content.Context;
+import android.util.AttributeSet;
+
+import java.util.Calendar;
+
+import flab.didier.daylogger.Views.ActionView;
 
 /**
  * Created by Didier on 2/2/2015.
  */
 public class Action {
 
+    private static int actionsCreated = 0;
+    private int id;
     private String name;
-    private Date date;
-    private Time time;
+    private Calendar date;
     private String note;
 
-    public Action(String name, Date date, Time time, String note){
+    public Action(String name, String note){
+        actionsCreated = actionsCreated++;
+        id = actionsCreated;
         this.name = name;
-        this.date = date;
-        this.time = time;
+        this.date = Calendar.getInstance();
         this.note = note;
+    }
+
+    public int getActionsCreated(){
+        return actionsCreated;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getName(){
@@ -28,20 +42,12 @@ public class Action {
         name = newName;
     }
 
-    public Date getDate(){
+    public Calendar getDate(){
         return date;
     }
 
-    public void setDate(Date newDate){
+    public void setDate(Calendar newDate){
         date = newDate;
-    }
-
-    public Time getTime(){
-        return time;
-    }
-
-    public void setTime(Time newTime){
-        time = newTime;
     }
 
     public String getNote(){
@@ -50,5 +56,12 @@ public class Action {
 
     public void setNote(String newNote){
         note = newNote;
+    }
+
+    public ActionView getView(Context context, AttributeSet attributes){
+        ActionView view = new ActionView(context, attributes);
+        view.setActionName(name);
+        view.setActionTime(date);
+        return view;
     }
 }
