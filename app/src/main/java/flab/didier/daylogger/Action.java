@@ -11,23 +11,18 @@ import flab.didier.daylogger.Views.ActionView;
  * Created by Didier on 2/2/2015.
  */
 public class Action {
-
-    private static int actionsCreated = 0;
     private int id;
     private String name;
     private Calendar date;
     private String note;
+    private boolean shown;
 
-    public Action(String name, String note){
-        actionsCreated = actionsCreated++;
-        id = actionsCreated;
+    public Action(int id, String name, String note){
+        this.id = id;
         this.name = name;
         this.date = Calendar.getInstance();
         this.note = note;
-    }
-
-    public int getActionsCreated(){
-        return actionsCreated;
+        this.shown = false;
     }
 
     public int getId(){
@@ -56,6 +51,21 @@ public class Action {
 
     public void setNote(String newNote){
         note = newNote;
+    }
+
+    public void setShown(boolean shown){
+        this.shown = shown;
+    }
+
+    public boolean isShown(){
+        return shown;
+    }
+
+    public ActionView getView(Context context){
+        ActionView view = new ActionView(context);
+        view.setActionName(name);
+        view.setActionTime(date);
+        return view;
     }
 
     public ActionView getView(Context context, AttributeSet attributes){

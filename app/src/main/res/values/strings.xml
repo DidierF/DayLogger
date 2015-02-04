@@ -4,5 +4,7 @@
     <string name="app_name">Day Logger</string>
     <string name="action_settings">Settings</string>
     <string name="new_action">New Action</string>
+    <string name="action_hour">HH</string>
+    <string name="action_minutes">MM</string>
 
 </resources>

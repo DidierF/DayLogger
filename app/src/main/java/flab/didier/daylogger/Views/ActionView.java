@@ -23,6 +23,8 @@ public class ActionView extends LinearLayout {
 
     public ActionView(Context context){
         super(context);
+
+        LayoutInflater.from(context).inflate(R.layout.action_view, this, true);
     }
 
     public ActionView(Context context, AttributeSet attrs) {
@@ -63,6 +65,7 @@ public class ActionView extends LinearLayout {
 
     public void setActionName(String newActionName){
         mActionName = newActionName;
+        ((TextView)this.findViewById(R.id.actionName)).setText(mActionName);
         invalidate();
         requestLayout();
     }

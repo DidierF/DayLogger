@@ -1,41 +1,52 @@
 package flab.didier.daylogger.Activities;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
+import flab.didier.daylogger.Action;
+import flab.didier.daylogger.ActionManager;
 import flab.didier.daylogger.R;
 
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends Activity{
 
+    private ActionManager manager = ActionManager.getInstance();
+    private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        layout = (LinearLayout) findViewById(R.id.homeActivity);
+
+        showActions();
+
+        Button addBtn = (Button) findViewById(R.id.addButton);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                manager.addNewAction("Action added by button!", "");
+                showNewActions();
+            }
+        });
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void showActions(){
+        for(Action a: manager){
+            layout.addView(a.getView(this.getApplicationContext()));
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void showNewActions(){
+        for(Action a: manager){
+            if(!a.isShown()) {
+                layout.addView(a.getView(this.getApplicationContext()));
+                a.setShown(true);
+            }
+        }
     }
 }
