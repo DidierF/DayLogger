@@ -1,12 +1,14 @@
-package flab.didier.daylogger;
+package flab.didier.daylogger.Activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import flab.didier.daylogger.R;
 
-public class HomeActivity extends ActionBarActivity {
+
+public class HomeActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
