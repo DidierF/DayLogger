@@ -5,4 +5,6 @@
     <dimen name="action_view_height">130dp</dimen>
     <dimen name="time_height">65dp</dimen>
     <dimen name="time_text">45sp</dimen>
+    <dimen name="fields_width">200dp</dimen>
+    <dimen name="new_activity_text_width">70dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package flab.didier.daylogger.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,30 +22,35 @@ public class HomeActivity extends Activity{
         setContentView(R.layout.activity_home);
         layout = (LinearLayout) findViewById(R.id.homeActivity);
 
-        showActions();
+        final Intent intent = new Intent(this, NewActionActivity.class);
 
-        Button addBtn = (Button) findViewById(R.id.addButton);
+        Button addBtn = (Button) findViewById(R.id.newActionButton);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(intent);
 
-                manager.addNewAction("Action added by button!", "");
-                showNewActions();
             }
         });
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showNewActions();
+    }
+
     public void showActions(){
         for(Action a: manager){
-            layout.addView(a.getView(this.getApplicationContext()));
+            layout.addView(a.getView(this));
         }
     }
 
     public void showNewActions(){
         for(Action a: manager){
             if(!a.isShown()) {
-                layout.addView(a.getView(this.getApplicationContext()));
+                layout.addView(a.getView(this));
                 a.setShown(true);
             }
         }

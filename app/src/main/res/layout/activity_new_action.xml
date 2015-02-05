@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="flab.didier.daylogger.Activities.NewActionActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/new_action_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/new_action"
+        android:paddingBottom="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/actionNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/newActionNameText"
+            android:layout_width="@dimen/new_activity_text_width"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/new_action_name_text"/>
+
+        <EditText
+            android:id="@+id/newActionNameField"
+            android:layout_width="@dimen/fields_width"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/actionNoteLayout"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/newActionNoteText"
+            android:layout_width="@dimen/new_activity_text_width"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/new_action_note_text"/>
+
+        <EditText
+            android:id="@+id/newActionNoteField"
+            android:layout_width="@dimen/fields_width"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_btn"
+        android:layout_gravity="center"
+        android:id="@+id/saveButton"/>
+
+</LinearLayout>

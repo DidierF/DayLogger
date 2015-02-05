@@ -6,5 +6,9 @@
     <string name="new_action">New Action</string>
     <string name="action_hour">HH</string>
     <string name="action_minutes">MM</string>
+    <string name="title_activity_new_action">NewActionActivity</string>
+    <string name="new_action_name_text">Name:</string>
+    <string name="new_action_note_text">Note:</string>
+    <string name="save_btn">Save Action</string>
 
 </resources>
