@@ -10,5 +10,7 @@
     <string name="new_action_name_text">Name:</string>
     <string name="new_action_note_text">Note:</string>
     <string name="save_btn">Save Action</string>
+    <string name="title_activity_action_detail">ActionDetailActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

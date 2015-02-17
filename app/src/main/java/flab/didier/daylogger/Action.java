@@ -1,28 +1,34 @@
 package flab.didier.daylogger;
 
 import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Intent;
+import android.view.View;
 
 import java.util.Calendar;
 
-import flab.didier.daylogger.Views.ActionView;
+import flab.didier.daylogger.activities.ActionDetailActivity;
+import flab.didier.daylogger.views.ActionView;
 
 /**
  * Created by Didier on 2/2/2015.
  */
-public class Action {
+public class Action implements View.OnClickListener {
     private int id;
     private String name;
     private Calendar date;
     private String note;
     private boolean shown;
-
-    public Action(int id, String name, String note){
+    private ActionView view;
+    private Context context;
+    public Action(final int id, String name, String note, Context context){
         this.id = id;
-        this.name = name;
-        this.date = Calendar.getInstance();
-        this.note = note;
+        view = new ActionView(context);
+        setName(name);
+        setDate(Calendar.getInstance());
+        setNote(note);
         this.shown = false;
+        this.context = context;
+        view.setOnClickListener(this);
     }
 
     public int getId(){
@@ -35,6 +41,7 @@ public class Action {
 
     public void setName(String newName){
         name = newName;
+        view.setActionName(newName);
     }
 
     public Calendar getDate(){
@@ -43,6 +50,7 @@ public class Action {
 
     public void setDate(Calendar newDate){
         date = newDate;
+        view.setActionTime(date);
     }
 
     public String getNote(){
@@ -62,16 +70,18 @@ public class Action {
     }
 
     public ActionView getView(Context context){
-        ActionView view = new ActionView(context);
-        view.setActionName(name);
-        view.setActionTime(date);
         return view;
     }
 
-    public ActionView getView(Context context, AttributeSet attributes){
-        ActionView view = new ActionView(context, attributes);
-        view.setActionName(name);
-        view.setActionTime(date);
-        return view;
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        ActionManager.getInstance().setCaller(this);
+        Intent intent = new Intent(context, ActionDetailActivity.class);
+        context.startActivity(intent);
     }
 }

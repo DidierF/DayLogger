@@ -1,4 +1,4 @@
-package flab.didier.daylogger.Activities;
+package flab.didier.daylogger.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,8 +14,12 @@ import flab.didier.daylogger.R;
 
 public class HomeActivity extends Activity{
 
+    //TODO: Action details activity
+    //TODO: Action edit activity
+
     private ActionManager manager = ActionManager.getInstance();
     private LinearLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,18 +45,26 @@ public class HomeActivity extends Activity{
         showNewActions();
     }
 
-    public void showActions(){
-        for(Action a: manager){
-            layout.addView(a.getView(this));
-        }
-    }
-
     public void showNewActions(){
+        final Intent intent = new Intent(this, ActionDetailActivity.class);
         for(Action a: manager){
+//            setClickListener(a);
             if(!a.isShown()) {
                 layout.addView(a.getView(this));
                 a.setShown(true);
             }
         }
     }
+
+//    private void setClickListener(final Action action){
+//        final Intent intent = new Intent(this, ActionDetailActivity.class);
+//        action.getView(this).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                manager.setCaller(action);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 }

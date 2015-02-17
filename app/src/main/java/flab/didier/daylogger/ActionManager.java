@@ -1,5 +1,7 @@
 package flab.didier.daylogger;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -12,6 +14,7 @@ public class ActionManager extends ArrayList<Action> {
     private Action[] mostUsed = new Action[5];
     private Hashtable<Action, Integer> actionInstances = new Hashtable<>();
     private int actionsCreated = 0;
+    private Action caller;
 
     private ActionManager(){
         actionsCreated = 0;
@@ -21,22 +24,24 @@ public class ActionManager extends ArrayList<Action> {
         return manager;
     }
 
-    public int getActionsCreated() {
-        return actionsCreated;
-    }
-
-    public boolean addNewAction(String actionName, String actionNote){
+    public boolean addNewAction(String actionName, String actionNote, Context context){
 
 
-        return super.add(new Action(actionsCreated++, actionName, actionNote));
+        return super.add(new Action(actionsCreated++, actionName, actionNote, context));
     }
 
     public List<Action> search(String keyword){
         ArrayList<Action> searchResult = new ArrayList<Action>();
-
+        //TODO
         return searchResult;
     }
 
 
+    public Action getCaller() {
+        return caller;
+    }
 
+    public void setCaller(Action caller) {
+        this.caller = caller;
+    }
 }
